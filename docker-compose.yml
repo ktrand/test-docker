@@ -1,0 +1,36 @@
+services:
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./:/var/www
+            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - "8876:80"
+        depends_on:
+            - app
+        container_name: project_nginx
+
+    app:
+        build:
+            context: .
+            dockerfile: _docker/app/Dockerfile
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - postgres
+        container_name: project_app
+
+    postgres:
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: khtrand
+            POSTGRES_PASSWORD: qurboni
+            POSTGRES_DB: test_docker_db
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        container_name: project_postgres
+
+volumes:
+    postgres_data:
