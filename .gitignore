@@ -1,0 +1,21 @@
+# Docker
+_docker/nginx/logs/*
+!_docker/nginx/logs/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Docker volumes
+postgres_data/
+
+# OS generated files
+.DS_Store
+Thumbs.db 
