@@ -1,6 +1,6 @@
-FROM node:14
+FROM node:22.11
 
-WORKDIR /app
+WORKDIR /var/www/
 
 COPY package*.json ./
 RUN npm install
