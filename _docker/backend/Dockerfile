@@ -13,9 +13,12 @@ RUN apt-get update && apt-get install -y \
     pdo \
     pdo_pgsql \
     zip \
-    intl
+    intl \
+    opcache \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY ./_docker/backend/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 

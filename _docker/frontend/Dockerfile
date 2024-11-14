@@ -1,12 +1,15 @@
-FROM node:22.11
+FROM node:18 as builder
 
-WORKDIR /var/www/
+WORKDIR /var/www/frontend
 
-COPY package*.json ./
+COPY ./frontend/package*.json ./
+
 RUN npm install
 
-COPY . .
+COPY ./frontend/ .
 
-EXPOSE 8081
+RUN npm run build
 
-CMD ["npm", "start"]
+RUN ls -la dist/
+
+CMD ["tail", "-f", "/dev/null"]
