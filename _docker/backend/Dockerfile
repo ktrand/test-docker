@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./_docker/backend/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY ./_docker/backend/php-fpm.d/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
